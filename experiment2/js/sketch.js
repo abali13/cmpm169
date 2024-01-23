@@ -1,12 +1,13 @@
 // sketch.js - purpose and description here
-// Author: Your Name
-// Date:
+// Author: Aditya Bali
+// Date: 1/22/24
 
 // Here is how you might set up an OOP p5.js project
 // Note that p5.js looks for a file called sketch.js
 
 // Constants - User-servicable parts
 // In a longer project I like to put these in a separate file
+/*
 const VALUE1 = 1;
 const VALUE2 = 2;
 
@@ -64,4 +65,52 @@ function draw() {
 // mousePressed() function is called once after every time a mouse button is pressed
 function mousePressed() {
     // code to run when mouse is pressed
+}
+*/
+'use strict';
+var c;
+
+function setup() {
+  createCanvas(720, 720);
+  noFill();
+  background(255);
+  strokeWeight(2);
+  //stroke(0, 25);
+  c = color(150, 180, 95);
+}
+
+function draw() {
+  if (mouseIsPressed && mouseButton == LEFT) {
+    push();
+    translate(width / 2, height / 2);
+
+    var circleResolution = int(map(mouseY + 100, 0, height, 2, 10));
+    var radius = mouseX - width / 2;
+    var angle = TAU / circleResolution;
+    if (key == ' ') c = color(random(255), random(255), random(255), random(255));
+
+    beginShape();
+    for (var i = 0; i <= circleResolution; i++) {
+      var x = cos(angle * i) * radius;
+      var y = sin(angle * i) * radius;
+      //var x = ((sin(angle * i) * radius)/ (cos(angle * i) * radius));
+      //var y = ((cos(angle * i) * radius)/ (sin(angle * i) * radius));
+      if(circleResolution % 2 == 0){
+        vertex(x, y);
+      }else{
+        vertex(y, x);
+      }
+      
+      tint(c);
+      stroke(c);
+    }
+    endShape();
+
+    pop();
+  }
+}
+
+function keyReleased() {
+  if (keyCode == DELETE || keyCode == BACKSPACE) background(255);
+  if (key == 's' || key == 'S') saveCanvas(gd.timestamp(), 'png');
 }
