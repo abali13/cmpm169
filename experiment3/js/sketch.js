@@ -92,6 +92,7 @@ function mousePressed() {
  * KEYS
  * 1-2                 : switch noise mode
  * space               : new noise seed
+ * c                   : change color
  * backspace           : clear screen
  * s                   : save png
  */
