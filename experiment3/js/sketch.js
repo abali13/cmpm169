@@ -82,7 +82,12 @@ function mousePressed() {
 'use strict';
 var c;
 function setup(){
+    let canvasContainer = select("#canvas-container");
+    let canvas = createCanvas(470, 600);     
+    canvas.parent(canvasContainer);     
+    background(0, 0, 0);
    c = color(150, 180, 195);
+  
 }
 
 var sketch = function(p) {
